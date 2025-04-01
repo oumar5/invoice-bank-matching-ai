@@ -24,34 +24,41 @@
 - 📄 Support des relevés bancaires au format CSV
 - 🖼️ Support des factures aux formats JPG, JPEG, PNG
 - 🎯 Interface drag & drop intuitive
+- 📦 Support multi-fichiers
 
 #### 🔍 Analyse des Factures
 - 📝 Extraction automatique des informations clés :
-  - 📅 Date de facture
+  - 📅 Date de facture (support multi-formats)
   - 💰 Montant
   - 🏢 Nom du fournisseur
   - 🔢 Numéro de facture
+  - 📍 Adresse du vendeur
+  - 💱 Devise
 - 🤖 Traitement OCR via Mistral AI
+- 🔄 Gestion des valeurs nulles et des cas particuliers
 
 #### 🔄 Matching Intelligent
 - 🎯 Correspondance automatique entre factures et transactions
 - 📊 Critères de matching :
-  - 💰 Montant
-  - 📅 Date
-  - 🏢 Nom du fournisseur
+  - 💰 Montant (avec tolérance)
+  - 📅 Date (avec fenêtre temporelle)
+  - 🏢 Nom du fournisseur (fuzzy matching)
 - 📈 Score de confiance pour chaque match
+- 🔍 Logs détaillés du processus de matching
 
 #### 📊 Visualisation des Résultats
 - 📈 Tableau de bord avec statistiques globales
 - 📋 Détails des correspondances
 - 📊 Taux de matching
 - 🎯 Interface interactive pour la validation
+- 📝 Export des résultats
 
 ### 2.2 Fonctionnalités Secondaires
-- 📤 Export des résultats
+- 📤 Export des résultats au format CSV
 - 📜 Historique des analyses
 - ⚠️ Gestion des erreurs et notifications
 - 📝 Logs détaillés pour le débogage
+- 🔄 Support de plusieurs devises
 
 ## 👥 3. Utilisateurs Cibles
 
@@ -66,6 +73,7 @@
 - ⚡ Traitement rapide des documents
 - ✅ Résultats fiables et vérifiables
 - ✍️ Possibilité de validation manuelle
+- 📱 Interface responsive
 
 ## ⚙️ 4. Contraintes Techniques
 
@@ -73,22 +81,29 @@
 - ⚡ Temps de traitement < 30 secondes par facture
 - 📦 Support de lots de 10+ factures simultanément
 - 🚀 Interface réactive (< 2 secondes de latence)
+- 🔄 Gestion optimisée des appels API
 
 ### 4.2 Précision
 - 🎯 Taux de matching > 90% pour les cas standards
 - 📊 Score de confiance minimum de 0.8
-- 🔄 Gestion des cas particuliers (montants arrondis, dates différentes)
+- 🔄 Gestion des cas particuliers :
+  - Montants arrondis
+  - Dates différentes
+  - Variations de noms de vendeurs
+  - Multi-devises
 
 ### 4.3 Sécurité
 - 🔒 Protection des données sensibles
 - 🗑️ Pas de stockage permanent des documents
 - 🔑 Gestion sécurisée des clés API
+- 🔐 Validation des entrées
 
 ### 4.4 UX/UI
 - 📱 Interface responsive
 - 🎨 Design moderne et professionnel
 - ⚠️ Messages d'erreur clairs et explicites
 - 📖 Guide d'utilisation intégré
+- 🎯 Retours visuels sur les actions
 
 ## 🏗️ 5. Architecture Technique
 
@@ -98,19 +113,28 @@
 | Python | 3.8+ | Backend |
 | Streamlit | 1.32.0 | Frontend |
 | Mistral AI | Latest | IA/OCR |
-| Pandas | Latest | Traitement de données |
+| Pandas | Latest | Traitement des données |
+| Logging | Standard | Gestion des logs |
 
 ### 5.2 Structure du Projet
 ```
 invoice-bank-matching-ai/
-├── app.py                    # 🚀 Application principale
-├── config/                   # ⚙️ Configuration
-├── models/                   # 📊 Modèles de données
-└── services/                # 🛠️ Services métier
-    ├── api/                 # 🔌 Services d'API
-    ├── utils/               # 🧰 Utilitaires
-    └── invoice_service.py   # 📝 Service principal
+├── app.py                 # Application principale Streamlit
+├── components/           # Composants de l'interface utilisateur
+├── services/            # Services métier
+├── models/             # Modèles de données
+├── prompts/           # Prompts pour l'IA
+├── docs/              # Documentation
+└── config/            # Configuration
 ```
+
+### 5.3 Flux de Données
+1. Upload des documents
+2. Analyse des factures via Mistral AI
+3. Extraction des informations clés
+4. Matching avec les transactions
+5. Affichage des résultats
+6. Export des données
 
 ## 📅 6. Roadmap
 
@@ -167,6 +191,21 @@ invoice-bank-matching-ai/
 - 🔌 API publique
 - 🔄 Intégration avec d'autres systèmes
 - 📄 Support de nouveaux types de documents
+
+## 📈 9. Évolutions Futures
+
+### 9.1 Fonctionnalités Planifiées
+- 🔄 Support de plus de formats de documents
+- 📱 Application mobile
+- 🔄 Synchronisation cloud
+- 📊 Tableaux de bord avancés
+- 🤖 Amélioration des algorithmes de matching
+
+### 9.2 Optimisations
+- ⚡ Performance du traitement
+- 🎯 Précision du matching
+- 🔄 Gestion des erreurs
+- 📱 Expérience utilisateur
 
 ---
 

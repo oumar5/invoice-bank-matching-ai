@@ -9,29 +9,37 @@ Une application Streamlit qui utilise l'IA pour analyser automatiquement vos fac
 - 🔍 Matching intelligent avec score de confiance
 - 📊 Visualisation des résultats
 - 🎨 Interface utilisateur moderne et intuitive
+- 🤖 Extraction intelligente des informations de facture
+- 📅 Support de plusieurs formats de date
+- 💰 Matching précis des montants et des vendeurs
+- 📝 Logs détaillés pour le suivi des opérations
 
-## 🛠️ Structure du Projet
+## 🛠️ Architecture du Projet
 
 ```
 invoice-bank-matching-ai/
 ├── app.py                 # Application principale Streamlit
 ├── components/           # Composants de l'interface utilisateur
-│   ├── header.py        # En-tête de l'application
 │   ├── file_upload.py   # Gestion du téléchargement des fichiers
+│   ├── header.py        # En-tête de l'application
 │   ├── results.py       # Affichage des résultats
 │   └── styles.py        # Styles CSS personnalisés
 ├── services/            # Services métier
 │   ├── api/            # Services d'API
-│   │   ├── mistral_client.py
-│   │   ├── invoice_analyzer.py
-│   │   └── transaction_matcher.py
+│   │   ├── mistral_client.py    # Client pour l'API Mistral
+│   │   ├── invoice_analyzer.py  # Analyse des factures
+│   │   └── transaction_matcher.py # Matching des transactions
 │   ├── utils/          # Utilitaires
-│   │   └── logging_config.py
-│   └── invoice_service.py
+│   │   └── logging_config.py    # Configuration des logs
+│   └── invoice_service.py       # Service principal
 ├── models/             # Modèles de données
-│   └── data_models.py
+│   └── data_models.py  # Structures de données
+├── prompts/           # Prompts pour l'IA
+│   └── invoice_extraction.txt   # Prompt d'extraction des factures
+├── docs/              # Documentation
+│   └── cahier_des_charges.md   # Spécifications du projet
 └── config/            # Configuration
-    └── settings.py
+    └── settings.py    # Paramètres de l'application
 ```
 
 ## 🚀 Installation
@@ -91,6 +99,23 @@ Les logs sont configurés dans `services/utils/logging_config.py` et incluent :
 - Niveau de log : INFO
 - Format : `%(asctime)s - %(name)s - %(levelname)s - %(message)s`
 - Sortie : Console
+- Détails des opérations d'analyse et de matching
+
+## 🤖 Intelligence Artificielle
+
+L'application utilise l'API Mistral pour :
+- Extraire les informations des factures (date, montant, vendeur, etc.)
+- Analyser le texte brut des factures
+- Faire correspondre les factures avec les transactions bancaires
+
+Les prompts sont stockés dans le dossier `prompts/` pour une meilleure maintenabilité.
+
+## 📚 Documentation
+
+La documentation complète du projet se trouve dans le dossier `docs/` :
+- Cahier des charges
+- Spécifications techniques
+- Guide d'utilisation
 
 ## 🤝 Contribution
 
@@ -98,15 +123,8 @@ Les contributions sont les bienvenues ! N'hésitez pas à :
 1. Fork le projet
 2. Créer une branche pour votre fonctionnalité
 3. Commiter vos changements
-4. Pousser vers la branche
-5. Ouvrir une Pull Request
+4. Créer une Pull Request
 
 ## 📄 Licence
 
 Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
-
-## 🙏 Remerciements
-
-- [Streamlit](https://streamlit.io/) pour le framework d'interface utilisateur
-- [Mistral AI](https://mistral.ai/) pour l'API d'analyse
-- [Pandas](https://pandas.pydata.org/) pour le traitement des données
